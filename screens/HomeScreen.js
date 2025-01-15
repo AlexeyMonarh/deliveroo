@@ -17,6 +17,7 @@ import {
 import Categories from '../components/Categories'
 import FeaturedRow from '../components/FeaturedRow.js'
 import client from '../sanity.js'
+// import AuthScreen from '../components/Login.js'
 
 const HomeScreen = () => {
 	const navigation = useNavigation()
@@ -38,6 +39,7 @@ const HomeScreen = () => {
 
 	return (
 		<SafeAreaView className='bg-white pt-5'>
+			{/* <AuthScreen /> */}
 			{/* {Header} */}
 			<View className='flex-row pd-3 items-center mx-4 mt-2 space-x-2'>
 				<Image
@@ -74,15 +76,19 @@ const HomeScreen = () => {
 				<Categories />
 
 				{/* Featured rows */}
-				{featuredCategories?.map(category => (
-					// console.log(category),
-					<FeaturedRow
-						key={category._id}
-						id={category._id}
-						title={category.name}
-						description={category.short_description}
-					/>
-				))}
+				{featuredCategories?.map(
+					category => (
+						// console.log(category),
+						(
+							<FeaturedRow
+								key={category._id}
+								id={category._id}
+								title={category.name}
+								description={category.short_description}
+							/>
+						)
+					)
+				)}
 			</ScrollView>
 		</SafeAreaView>
 	)

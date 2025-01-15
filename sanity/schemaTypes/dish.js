@@ -2,19 +2,19 @@ import {defineType} from 'sanity'
 
 export default defineType({
   name: 'dish',
-  title: 'Dish',
+  title: 'Блюдо',
   type: 'document',
   fields: [
     {
       name: 'name',
       type: 'string',
-      title: 'Name of dish',
+      title: 'Название блюда',
       validation: (Rule) => Rule.required(),
     },
     {
       name: 'short_description',
       type: 'string',
-      title: 'Short description',
+      title: 'Краткое описание',
       validation: (Rule) => Rule.max(200),
     },
     {
@@ -22,6 +22,6 @@ export default defineType({
       type: 'number',
       title: 'Цена в рублях',
     },
-    {name: 'image', type: 'image', title: 'Image of the Dish'},
+    {name: 'image', type: 'image', title: 'Изображение блюда'},
   ],
 })

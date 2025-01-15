@@ -2,54 +2,52 @@ import {defineType} from 'sanity'
 
 export default defineType({
   name: 'restaurant',
-  title: 'Restaurant',
+  title: 'Ресторан',
   type: 'document',
   fields: [
     {
       name: 'name',
       type: 'string',
-      title: 'Restaurant name',
+      title: 'Название ресторана',
       validation: (Rule) => Rule.required(),
     },
     {
       name: 'short_description',
       type: 'string',
-      title: 'Short Description',
+      title: 'Краткое описание',
       validation: (Rule) => Rule.required(200),
     },
     {
       name: 'image',
       type: 'image',
-      title: 'Image of the Restaurant',
+      title: 'Изображение ресторана',
     },
     {
       name: 'lat',
       type: 'number',
-      title: 'Latitude of the Restaurant',
-      validation: (Rule) => Rule.required(),
+      title: 'Широта ресторана',
     },
     {
       name: 'long',
       type: 'number',
-      title: 'Longitude of the Restaurant',
-      validation: (Rule) => Rule.required(),
+      title: 'Долгота ресторана',
     },
     {
       name: 'address',
       type: 'string',
-      title: 'Restaurant address',
+      title: 'Адрес ресторана',
       validation: (Rule) => Rule.required(),
     },
     {
       name: 'rating',
       type: 'number',
-      title: 'Enter a Rating from (1-5 Stars)',
+      title: 'Оценка ресторана (1-5 звёзд)',
       validation: (Rule) =>
-        Rule.required().min(1).max(5).error('Please enter a Value between 1 and 5'),
+        Rule.required().min(1).max(5).error('Пожалуйста введите значение от 1 до 5'),
     },
     {
       name: 'type',
-      title: 'Category',
+      title: 'Категории',
       validation: (Rule) => Rule.required(),
       type: 'reference',
       to: [{type: 'category'}],
@@ -57,7 +55,7 @@ export default defineType({
     {
       name: 'dishes',
       type: 'array',
-      title: 'Dishes',
+      title: 'Блюда',
       of: [{type: 'reference', to: [{type: 'dish'}]}],
     },
   ],

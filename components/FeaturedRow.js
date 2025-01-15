@@ -11,25 +11,25 @@ const FeaturedRow = ({ id, title, description }) => {
 		client
 			.fetch(
 				`
-		*[_type == "featured" && _id == $id] {
+		*[ _type == "featured" && _id == $id ] {
 			...,
 				restaurants[]->{
 				...,
 				 dishes[]->,
-				  type-> {
+				  type->{
 						name
 					}
 				},
 			}[0]
 		`,
-				{}
+				{ id }
 			)
 			.then(data => {
 				setRestaurants(data?.restaurants)
 			})
 	}, [])
 
-	console.log(restaurants)
+	// console.log(restaurants)
 
 	return (
 		<View>
@@ -48,6 +48,23 @@ const FeaturedRow = ({ id, title, description }) => {
 			>
 				{/* RestaurantCards... */}
 
+				{restaurants?.map(restaurant => (
+					// console.log(restaurant.image),
+					<RestaurantCard
+						key={restaurant._id}
+						id={restaurant._id}
+						imgUrl={restaurant.image}
+						title={restaurant.name}
+						rating={restaurant.rating}
+						genre={restaurant.type?.name}
+						address={restaurant.address}
+						short_description={restaurant.short_description}
+						dishes={restaurant.dishes}
+						long={restaurant.long}
+						lat={restaurant.lat}
+					/>
+				))}
+				{/* 
 				<RestaurantCard
 					id={1}
 					imgUrl='https://links.papareact.com/gn7'
@@ -71,19 +88,7 @@ const FeaturedRow = ({ id, title, description }) => {
 					dishes={[]}
 					long={20}
 					lat={0}
-				/>
-				<RestaurantCard
-					id={1}
-					imgUrl='https://links.papareact.com/gn7'
-					title='Yo! Sushi'
-					rating={4.5}
-					genre='Japanese'
-					address='123 Main St'
-					short_description='This is a Test description'
-					dishes={[]}
-					long={20}
-					lat={0}
-				/>
+				/> */}
 			</ScrollView>
 		</View>
 	)
